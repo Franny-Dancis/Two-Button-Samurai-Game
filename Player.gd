@@ -11,7 +11,6 @@ const JUMP_FORCE = 140
 var motion = Vector2.ZERO
 
 onready var sprite = $AnimatedSprite
-onready var hitBox = $Position2D
 onready var hitboxPivot = $hitboxPivot
 onready var animationTimer = $animationTimer
 
