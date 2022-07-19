@@ -1,0 +1,141 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Gauge_No_Crit.png" type="Texture" id=1]
+[ext_resource path="res://Slider.png" type="Texture" id=2]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://One Button Game.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 34.32, 31.2 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 230.1, 31.2 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 82.68, 31.2 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Move"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 12 ), Vector2( 428, 12 ), Vector2( -3, 12 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5, 13 ) ]
+}
+
+[node name="One Button Game" type="Node2D"]
+position = Vector2( 285, 249 )
+script = ExtResource( 4 )
+
+[node name="GaugeNoCrit" type="Sprite" parent="."]
+position = Vector2( 213, 12 )
+scale = Vector2( 0.320513, 0.320513 )
+texture = ExtResource( 1 )
+
+[node name="Sweet Spot" type="Area2D" parent="GaugeNoCrit"]
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Sweet Spot"]
+position = Vector2( -0.000183105, 0 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 1 )
+
+[node name="Fail2" type="Area2D" parent="GaugeNoCrit"]
+position = Vector2( -430.56, -3.8147e-06 )
+scale = Vector2( 0.999999, 0.999999 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Fail2"]
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="Fail" type="Area2D" parent="GaugeNoCrit"]
+position = Vector2( 427.44, -3.8147e-06 )
+scale = Vector2( 1, 1 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Fail"]
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="Success 2" type="Area2D" parent="GaugeNoCrit"]
+position = Vector2( 115.44, -3.8147e-06 )
+scale = Vector2( 1, 1 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Success 2"]
+position = Vector2( -3.05176e-05, 0 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="Success" type="Area2D" parent="GaugeNoCrit"]
+position = Vector2( -115.44, -3.8147e-06 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Success"]
+position = Vector2( -6.10352e-05, 0 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="Slider" type="Sprite" parent="."]
+position = Vector2( 5, 13 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Hitbox" parent="Slider" instance=ExtResource( 3 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Slider"]
+autoplay = "Move"
+anims/Move = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[connection signal="area_entered" from="GaugeNoCrit/Sweet Spot" to="." method="_on_Sweet_Spot_area_entered"]
+[connection signal="area_exited" from="GaugeNoCrit/Sweet Spot" to="." method="_on_Sweet_Spot_area_exited"]
+[connection signal="area_entered" from="GaugeNoCrit/Fail2" to="." method="_on_Fail2_area_entered"]
+[connection signal="area_exited" from="GaugeNoCrit/Fail2" to="." method="_on_Fail2_area_exited"]
+[connection signal="area_entered" from="GaugeNoCrit/Fail" to="." method="_on_Fail_area_entered"]
+[connection signal="area_exited" from="GaugeNoCrit/Fail" to="." method="_on_Fail_area_exited"]
+[connection signal="area_entered" from="GaugeNoCrit/Success 2" to="." method="_on_Success_2_area_entered"]
+[connection signal="area_exited" from="GaugeNoCrit/Success 2" to="." method="_on_Success_2_area_exited"]
+[connection signal="area_entered" from="GaugeNoCrit/Success" to="." method="_on_Success_area_entered"]
+[connection signal="area_exited" from="GaugeNoCrit/Success" to="." method="_on_Success_area_exited"]
