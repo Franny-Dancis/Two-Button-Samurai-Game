@@ -6,13 +6,13 @@
 [ext_resource path="res://One Button Game.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 34.32, 31.2 )
+extents = Vector2( 31.2001, 31.2 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 230.1, 31.2 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 82.68, 31.2 )
+extents = Vector2( 80.34, 31.2 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "Move"
@@ -62,7 +62,6 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Sweet Spot"]
-position = Vector2( -0.000183105, 0 )
 scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 1 )
 
@@ -75,32 +74,23 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Fail2"]
-scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
 
 [node name="Fail" type="Area2D" parent="GaugeNoCrit"]
 position = Vector2( 427.44, -3.8147e-06 )
-scale = Vector2( 1, 1 )
 collision_layer = 2
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Fail"]
-scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
 
 [node name="Success 2" type="Area2D" parent="GaugeNoCrit"]
 position = Vector2( 115.44, -3.8147e-06 )
-scale = Vector2( 1, 1 )
 collision_layer = 2
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Success 2"]
-position = Vector2( -3.05176e-05, 0 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
 
 [node name="Success" type="Area2D" parent="GaugeNoCrit"]
@@ -112,15 +102,11 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GaugeNoCrit/Success"]
 position = Vector2( -6.10352e-05, 0 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
 
 [node name="Slider" type="Sprite" parent="."]
 position = Vector2( 5, 13 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Hitbox" parent="Slider" instance=ExtResource( 3 )]
 
@@ -129,13 +115,11 @@ autoplay = "Move"
 anims/Move = SubResource( 4 )
 anims/RESET = SubResource( 5 )
 
-[connection signal="area_entered" from="GaugeNoCrit/Sweet Spot" to="." method="_on_Sweet_Spot_area_entered"]
-[connection signal="area_exited" from="GaugeNoCrit/Sweet Spot" to="." method="_on_Sweet_Spot_area_exited"]
-[connection signal="area_entered" from="GaugeNoCrit/Fail2" to="." method="_on_Fail2_area_entered"]
-[connection signal="area_exited" from="GaugeNoCrit/Fail2" to="." method="_on_Fail2_area_exited"]
-[connection signal="area_entered" from="GaugeNoCrit/Fail" to="." method="_on_Fail_area_entered"]
-[connection signal="area_exited" from="GaugeNoCrit/Fail" to="." method="_on_Fail_area_exited"]
-[connection signal="area_entered" from="GaugeNoCrit/Success 2" to="." method="_on_Success_2_area_entered"]
-[connection signal="area_exited" from="GaugeNoCrit/Success 2" to="." method="_on_Success_2_area_exited"]
-[connection signal="area_entered" from="GaugeNoCrit/Success" to="." method="_on_Success_area_entered"]
-[connection signal="area_exited" from="GaugeNoCrit/Success" to="." method="_on_Success_area_exited"]
+[node name="Points" type="Label" parent="."]
+margin_left = 192.0
+margin_top = -63.0
+margin_right = 232.0
+margin_bottom = -23.0
+text = "Test"
+
+[editable path="Slider/Hitbox"]
