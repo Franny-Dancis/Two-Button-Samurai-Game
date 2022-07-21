@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Red.png" type="Texture" id=1]
+[ext_resource path="res://Log Throwing Game.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 333.058, 38 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 781.289, 299.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Spin"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 781.289, 299.5 ), Vector2( 636, 233 ), Vector2( 333, 327 ), Vector2( 123, 491 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 50.9, 160.0, 305.5 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 126, 94.75 )
+
+[node name="Log Throwing Game" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Red" type="Sprite" parent="."]
+position = Vector2( 781.289, 299.5 )
+scale = Vector2( 0.223684, 0.223684 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Hitzone" type="Area2D" parent="Red"]
+scale = Vector2( 1, 1 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Red/Hitzone"]
+position = Vector2( 0.940674, 0 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Red"]
+autoplay = "Spin"
+anims/RESET = SubResource( 2 )
+anims/Spin = SubResource( 3 )
+
+[node name="PlayerHitZone" type="Area2D" parent="."]
+position = Vector2( 179, 474 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitZone"]
+position = Vector2( -1, 0 )
+shape = SubResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 433.0
+margin_top = 176.0
+margin_right = 585.0
+margin_bottom = 236.0
